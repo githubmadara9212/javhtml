@@ -1,0 +1,44 @@
+.javframe{
+    position:relative;
+    width:100%;
+}
+.panelbox{
+    float:left;
+    margin-left:1%;
+    transition-duration: 0.5s;
+}
+
+.PanelBoxBlackBlur{
+    opacity: 0.5;
+    filter:blur(5px) contrast(130%);;
+    transition-duration: 0.5s;
+}
+
+.paneltittle_box{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    padding:5px 1px 1px 5px;
+    border-radius:5px 5px 0px 0px;
+    color:#666;
+    background-color:var(--panelc);
+}
+.paneltittle_str{
+    cursor:pointer;
+    transition-duration: 0.3s;
+}
+.paneltittle_str:hover{
+    color: #ff9a0a;
+    transition-duration: 0.3s;
+}
+.panelvideo{
+    width:100%;
+    border: 3px solid var(--panelc);
+    border-radius:0px 0px 5px 5px;
+    cursor:pointer;
+    transition-duration: 0.3s;
+}
+.panelvideo:hover{
+    border: 3px solid #ff9a0a;
+    transition-duration: 0.3s;
+}
