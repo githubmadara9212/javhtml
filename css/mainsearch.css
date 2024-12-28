@@ -1,10 +1,12 @@
 .mainsearch {
     padding: 30px 0;
+    width:100%;
     transition-duration: 0.15s;
 }
 .mainsearch form {
     position: relative;
-    width: 600px;
+    width: 43%;
+    min-width:300px;
     margin: 0 auto;
 }
 
@@ -17,6 +19,7 @@
     width: 100%;
     height: 46px;
     padding-left: 10px;
+    font-family:Microsoft YaHei;
 }
 input::placeholder {
     color:var(--placecolor);

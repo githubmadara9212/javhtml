@@ -14,9 +14,12 @@ video::media-controls {
 :root{--bgcolor:white}          /* 全局背景 */
 :root{--searchbg:white}       /* 搜索输入框背景 */
 :root{--placecolor: #acacac}    /* 搜索输入框提示文字颜色 */
-:root{--scrA:#8b8b8b}
+:root{--scrA:#ddd}
 :root{--scrB:white}
-:root{--panelc: #F3F3F3}
+:root{--panelc: #e0e0e0}
+:root{--pagebg:#F5F5F5}
+:root{--pagediss:#c0c4cc}
+:root{--animadur:0.2s}
 @media(prefers-color-scheme:dark){ /* 系统夜间模式 */
     :root{--bgcolor:#222}
     :root{--searchbg: #faf5f5}
@@ -24,21 +27,24 @@ video::media-controls {
     :root{--scrA:#222}
     :root{--scrB:#333}
     :root{--panelc:#111}
+    :root{--pagebg:#000}
+    :root{--pagediss:#222}
 }
+
 *{
     padding:0;
     margin:0;
 }
 
 html,body{
-    margin: 0;
-    padding: 0;
+
     height:100%;
     background-color:var(--bgcolor);
     overflow-x:hidden;
                                     /* scrollbar-width: thin; 可以是 'auto', 'thin', 'none' */
     scrollbar-color:var(--scrA) var(--scrB); /* 滚动条的颜色，第一个值是滑块的颜色，第二个是背景的颜色 */
 }
+
 .javtopnomal{
     position: relative;
     margin-top:16.5%;
@@ -50,14 +56,14 @@ html,body{
     padding:0.38%;
     border-radius:30px;
     cursor:pointer;
-    transition-duration: 0.15s;
+    transition-duration:var(--animadur);
 }
 
 .htmllogo:hover {
     /* transform:scale(1.1); 缩放效果 */
-    transition-duration: 0.15s;
+    transition-duration:var(--animadur);
     filter:saturate(150%) contrast(120%);  /* 多个中间空格-->filter:saturate(150%) contrast(150%); */
-    box-shadow: 0 0 30px #ff6262;
+    box-shadow: 0 0 38px #ff6262;
 }
 
 .htmllogoimg{
@@ -70,17 +76,41 @@ html,body{
     margin-left:2%;
 }
 
+.javframe{
+    position:relative;
+    width:100%;
+}
+
+.framepagesbox{
+    position:relative;
+    display:inline-block;
+    width:100%;
+}
+
 .copyright{
     position:relative;
     width:100%;
-    margin-top:1%;
+    margin-bottom:1%;
     text-align: center;
     color:var(--placecolor);
-    transition-duration: 0.15s;
+    transition-duration:var(--animadur);
     display:inline-block;
     cursor:pointer;
 }
 .copyright:hover{
     filter:contrast(75%);
-    transition-duration: 0.15s;
+    transition-duration:var(--animadur);
+}
+
+.testlog{
+    position: fixed;
+    z-index:9999;
+    color:#93bd6f;
+    width:10%;
+    height:18%;
+    left:88%;
+    top:2%;
+    overflow-y:auto;
+    max-height:18%;
+    pointer-events:none;
 }
