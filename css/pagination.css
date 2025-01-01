@@ -301,11 +301,11 @@
 }
 
 ._pages_1 li {
-  background-color:var(--pagebg);
+  background-color:var(--panelc);
 }
 
 ._prev_1, ._next_1, ._home_1, ._last_1 {
-  background-color:var(--pagebg);
+  background-color:var(--panelc);
 }
 
 ._active_1 {

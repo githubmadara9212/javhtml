@@ -1,0 +1,85 @@
+.panelwindowplus{
+    position:fixed !important;
+    z-index:9998;
+    scale:var(--vplusscale);
+    border: 4px solid var(--panelc);
+    background-color:var(--panelc);
+    border-radius:6px;
+    /* panelwindowplus 在panelwindow的动画时间已经有了 */
+}
+.PanelControlBox{
+    position:absolute;
+    width:100%;
+    top:0%;
+    cursor:pointer;
+    display:none;
+}
+.PanelControlexit{
+    position:absolute;
+    right:1.5%;
+    transform: translateY(-5%);
+    max-width:25px;
+    transition-duration:var(--animadur);
+    content:url("../images/vplusmix.png");
+    cursor: pointer;
+}
+.PanelControlexit:hover{
+    content:url("../images/vplusmix_hover.png");
+}
+
+.PanelControlvplay{
+    position:absolute;
+    left:2%;
+    width:30px;
+    height:30px;
+    margin-top:50%;
+    border-radius: 30px;
+    content:url("../images/play.png");
+}
+.PanelControlvtime{
+    position:absolute;
+    left:7%;
+    width:16%;
+    height:30px;
+    margin-top:50%;
+    background-color: #93bd6f;
+}
+.PanelControloption{
+    position:absolute;
+    right:2%;
+    width:18%;
+    height:30px;
+    margin-top:50%;
+    background-color: #93bd6f;
+}
+.PanelControlLoad{
+    position:absolute;
+    width:96%;
+    left:2%;
+    height:12px;
+    margin-top:55%;
+    background-color: #93bd6f;
+}
+.PanelControlview{
+    position:absolute;
+    width:20%;
+    left:40%;
+    margin-top:43%;
+    border: 2px solid #ffcd00;
+    content:url("../images/loading.gif");
+    border-radius:6px;
+}
+.PanelControlmaskt{
+    position:absolute;
+    width:100%;
+    margin-top:22px;
+    content:url("../images/masktop.png");
+    pointer-events: none;
+}
+.PanelControlmaskb{
+    position:absolute;
+    width:100%;
+    margin-top:53.75%;
+    content:url("../images/maskbottom.png");
+    pointer-events: none;
+}
