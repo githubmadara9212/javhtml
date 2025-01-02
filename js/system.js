@@ -36,7 +36,6 @@ function HiddenElement(element){
         element.style.display="none";
     })
 }
-
 function GetHtmlAnimateTime(){
     let htmlStyle = window.getComputedStyle(document.documentElement);
     let value = htmlStyle.getPropertyValue('--animadur');
@@ -92,6 +91,23 @@ function GetRealWindowResize(value){
     }
     return value;
 }
+function SecondToTime(ss) {
+    var hh=mm=0;
+    var ss = ~~ss;// 秒
+    if(ss>3599){
+        hh=Math.floor(ss/3600);
+        mm=Math.floor(ss%3600/60);
+        ss=ss%60;
+        return (hh>9?hh:'0'+hh)+":"+(mm>9?mm:'0'+mm)+":"+(ss>9?ss:'0'+ss);
+    }else if(ss>59){
+        mm=Math.floor(ss/60);
+        ss=ss%60;
+        return (mm>9?mm:'0'+mm)+":"+(ss>9?ss:'0'+ss);
+    }else{
+        return "00:"+(ss>9?ss:'0'+ss);
+    }
+}
+
 $(function(){
     $(window).resize(function() {
         WindowResizeTransform();

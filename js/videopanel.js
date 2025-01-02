@@ -19,8 +19,6 @@ $(function() {
 //  Old_Alpha_Data_Length
 //  Now_Alpha_Data_Length
 function InputOptimize(){
-    let v_padding=1;
-    let v_width=(100-v_padding*(Panel_Line+1))/Panel_Down;
     for(let i=0;i<Old_Alpha_Data_Length;i++){
 
     }
@@ -41,25 +39,25 @@ function PanelBuild(){
         for(let i=0;i<Now_Alpha_Data_Length;i++){
             let panelbox=document.createElement("div");
             panelbox.className="panelbox";
-            panelbox.style.width=Panel_width+"%";
+            $(panelbox).css({"width":Panel_width+"%"});
             panelbox.id="panelbox"+i;
             javframeid.appendChild(panelbox);
             ExtrudeBoxAnimation(panelbox);
 
-            let panelbackbox=document.createElement("div");
+            let panelbackbox=document.createElement("div");//0
             panelbackbox.className="panelbackbox";
             panelbackbox.id="panelbackbox"+i;
             panelbackbox.style.display="none";
             panelbox.appendChild(panelbackbox);
-                let paneladdtittle_box=document.createElement("div");
+                let paneladdtittle_box=document.createElement("div");//0-0
                 paneladdtittle_box.className="paneladdtittle_box";
                 paneladdtittle_box.id="paneladdtittle_box"+i;
                 panelbackbox.appendChild(paneladdtittle_box);
-                    let paneladdtittle_str=document.createElement("b");
+                    let paneladdtittle_str=document.createElement("b");//0-0-0
                     paneladdtittle_str.className="paneladdtittle_str";
                     paneladdtittle_str.innerText="\n";
                     paneladdtittle_box.appendChild(paneladdtittle_str);
-                let panelpadd=document.createElement("img");
+                let panelpadd=document.createElement("img");//0-1
                 panelpadd.src="./images/panelpadding.gif";
                 panelpadd.className="panelpadd";
                 panelbackbox.appendChild(panelpadd);
@@ -71,16 +69,15 @@ function PanelBuild(){
             panelwindow.setAttribute("URL",url);
             panelbox.appendChild(panelwindow);
 
-                let paneltittle_box=document.createElement("div");
+                let paneltittle_box=document.createElement("div");//panelwindow-0
                 paneltittle_box.className="paneltittle_box";
                 paneltittle_box.id="paneltittle_box"+i;
                 panelwindow.appendChild(paneltittle_box);
-                    let paneltittle_str=document.createElement("b");
+                    let paneltittle_str=document.createElement("b");//panelwindow-0-1
                     paneltittle_str.className="paneltittle_str";
                     paneltittle_str.innerText=Now_Alpha_Data[i].MTitle;
                     paneltittle_box.appendChild(paneltittle_str);
-
-                let panelvideo=document.createElement("video");
+                let panelvideo=document.createElement("video");//panelwindow-1
                 panelvideo.src=url;
                 panelvideo.className="panelvideo";
                 panelvideo.id="panelvideo"+i;
@@ -94,40 +91,56 @@ function PanelBuild(){
                 panelwindow.appendChild(panelvideo);
                 observer.observe(panelvideo);
 
-                let PanelControlSmall=document.createElement("div");
+                let PanelControlSmall=document.createElement("div");//panelwindow-2
                 PanelControlSmall.className="PanelControlSmall";
                 panelwindow.appendChild(PanelControlSmall);
-                    let PanelControllove=document.createElement("div");
+                    let PanelControllove=document.createElement("img");//panelwindow-2-0
                     PanelControllove.className="PanelControllove";
+                    PanelControllove.src="./images/favorite_n.png";
                     PanelControlSmall.appendChild(PanelControllove);
-                    let PanelControlRemind=document.createElement("div");
+                    let PanelControlRemind=document.createElement("b");//panelwindow-2-1
                     PanelControlRemind.className="PanelControlRemind";
+                    PanelControlRemind.innerText="";
                     PanelControlSmall.appendChild(PanelControlRemind);
-                    let PanelControllock=document.createElement("div");
+                    let PanelControllock=document.createElement("img");//panelwindow-2-2
+                    PanelControllock.src="./images/locked_2.png";
                     PanelControllock.className="PanelControllock";
                     PanelControlSmall.appendChild(PanelControllock);
-                    let PanelControlposture=document.createElement("div");
+                    let PanelControlposture=document.createElement("div");//panelwindow-2-3
                     PanelControlposture.className="PanelControlposture";
                     PanelControlSmall.appendChild(PanelControlposture);
-                    let PanelControlSpeed=document.createElement("div");
+                    let PanelControlSpeed=document.createElement("div");//panelwindow-2-4
                     PanelControlSpeed.className="PanelControlSpeed";
                     PanelControlSmall.appendChild(PanelControlSpeed);
-                    let PanelControlquality=document.createElement("div");
+                    let PanelControlquality=document.createElement("div");//panelwindow-2-5
                     PanelControlquality.className="PanelControlquality";
                     PanelControlSmall.appendChild(PanelControlquality);
 
-                let PanelControlBox=document.createElement("div");
+                let PanelControlBox=document.createElement("div");//panelwindow-3
                 PanelControlBox.className="PanelControlBox";
                 panelwindow.appendChild(PanelControlBox);
-                    let PanelControlexit=document.createElement("img");
+                    let PanelControlexit=document.createElement("img");//panelwindow-3-0
                     PanelControlexit.className="PanelControlexit";
+                    PanelControlexit.src="./images/vplusmix_hover.png";
                     PanelControlBox.appendChild(PanelControlexit);
-                    let PanelControlvplay=document.createElement("div");
+                    let PanelControlvplay=document.createElement("img");//panelwindow-3-1
+                    PanelControlvplay.src="./images/pause.png";
                     PanelControlvplay.className="PanelControlvplay";
                     PanelControlBox.appendChild(PanelControlvplay);
-                    let PanelControlvtime=document.createElement("div");
+                    let PanelControlvtime=document.createElement("div");//panelwindow-3-2
                     PanelControlvtime.className="PanelControlvtime";
                     PanelControlBox.appendChild(PanelControlvtime);
+                        let PanelControltimestr1=document.createElement("p");//PanelControlBox-0-0
+                        PanelControltimestr1.style.float="left";
+                        PanelControltimestr1.innerText="00:00";
+                        PanelControlvtime.appendChild(PanelControltimestr1);
+                        let PanelControltimestr2=document.createElement("p");//PanelControlBox-0-1
+                        PanelControltimestr2.style.float="left";
+                        PanelControltimestr2.innerText="/";
+                        PanelControlvtime.appendChild(PanelControltimestr2);
+                        let PanelControltimestr3=document.createElement("p");//PanelControlBox-0-2
+                        PanelControltimestr3.innerText="00:00";
+                        PanelControlvtime.appendChild(PanelControltimestr3);
                     let PanelControloption=document.createElement("div");
                     PanelControloption.className="PanelControloption";
                     PanelControlBox.appendChild(PanelControloption);

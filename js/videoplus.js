@@ -1,10 +1,11 @@
 var vpluswindow;
+var vplusvideo;
 var vpanlpluswidth="60%";
 var vpanlplussleft="20%";
 var vpanlplusstop="18%";
 function RegisteredVplusEvent(){
-    PanelWindowPlusMove();
-    PanelWindowPlusWheel();
+    PanelWindowPlusEvent();
+    VplusVideoEvent();
 }
 
 function MouseInCondition(){
@@ -31,25 +32,31 @@ $(function() {
             let panelbox = panelwindow.parentNode;
             let panelbackbox = panelbox.children[0];
             if (StringsHave(panelwindow.className, "panelwindowplus") === false) {
-              if (vpluswindow!=null){RestorePanelWindow(vpluswindow);}
-              vpluswindow = panelwindow;
-              SetPanelWindowPostion(panelwindow);
-              panelbackbox.style.display = "block";
-              panelwindow.style.transitionDuration = "0s";
-              panelwindow.style.pointerEvents = "none";
-              PanelControlsmall.style.top="0%";
-              $(panelwindow).addClass("panelwindowplus");
-              panelwindow.style.width = GetPanelWindowPosition(panelwindow, "width");
-              panelwindow.style.left = GetPanelWindowPosition(panelwindow, "left");
-              panelwindow.style.top = GetPanelWindowPosition(panelwindow, "top");
-              $(panelwindow).stop().animate({width:vpanlpluswidth, left:vpanlplussleft, top:vpanlplusstop}, GetHtmlAnimateTime(), function () {
-                  $(paneltittlebox).addClass("paneltittle_str_White");
-                  panelwindow.style.transitionDuration = "var(--animadur)";
-                  ShowElement(PanelControlbox);
-                  panelwindow.style.pointerEvents = "auto";
-                  element.muted=false;
-                  RegisteredVplusEvent();//注册事件
-              });
+                if (vpluswindow!=null){RestorePanelWindow(vpluswindow);}
+                vpluswindow = panelwindow;
+                vplusvideo=vpluswindow.children[1];
+                vplusvideo.play();
+                panelwindow.children[3].children[1].src="\./images/pause.png";
+                WritePanelWindowPostion(panelwindow);
+                panelbackbox.style.display = "block";
+                panelwindow.style.transitionDuration = "0s";
+                panelwindow.style.pointerEvents = "none";
+                PanelControlsmall.style.top="0%";
+                $(PanelControlsmall).stop().animate({top:"0%"},GetHtmlAnimateTime());
+                ShowElement(PanelControlbox);
+                PanelControlbox.children[2].children[2].innerText=SecondToTime(panelwindow.children[1].duration);
+                $(panelwindow).addClass("panelwindowplus");
+                let width=GetPanelWindowPosition(panelwindow, "width");
+                let left=GetPanelWindowPosition(panelwindow, "left");
+                let top=GetPanelWindowPosition(panelwindow, "top");
+                $(panelwindow).css({"width":width,"left":left,"top":top});
+                $(panelwindow).stop().animate({width:vpanlpluswidth, left:vpanlplussleft, top:vpanlplusstop}, GetHtmlAnimateTime(), function () {
+                      $(paneltittlebox).addClass("paneltittle_str_White");
+                      panelwindow.style.transitionDuration = "var(--animadur)";
+                      panelwindow.style.pointerEvents = "auto";
+                      element.muted=false;
+                      RegisteredVplusEvent();//注册事件
+                });
             }
         }
         if (element.className === "PanelControlexit") {
@@ -77,14 +84,13 @@ function RestorePanelWindow(panelwindow){
     let l=GetPanelWindowPosition(panelwindow,"left");
     let t=GetPanelWindowPosition(panelwindow,"top");
     panelwindow.style.pointerEvents = "none";
-    PanelControlsmall.style.top="2vh";
+    $(PanelControlsmall).stop().animate({top:"2vh"},GetHtmlAnimateTime());
+    CleanVpanelVplusEvent();
     HiddenElement(PanelControlbox);
     $(panelwindow).stop().animate({width:w,left:l,top:t},GetHtmlAnimateTime(),function(){
         $(panelwindow).removeClass("panelwindowplus");
         panelbackbox.style.display = "none";
-        panelwindow.style.width="100%";
-        panelwindow.style.left="0%";
-        panelwindow.style.top="0%";
+        $(panelwindow).css({"width":"100%","left":"0%","top":"0%"});
         panelwindow.children[1].muted=true;
         panelwindow.children[1].play();
         setTimeout(function(){
@@ -113,8 +119,7 @@ function GetElementPanelBox(element){
         return element.parentNode.parentNode.parentNode;
     }
 }
-
-function PanelWindowPlusMove() {
+function PanelWindowPlusEvent() {
     vpluswindow.onmousedown=function(){
         if(MouseIn(vpluswindow)&&MouseInCondition()){
             let disX =MouseX - vpluswindow.offsetLeft;
@@ -127,8 +132,7 @@ function PanelWindowPlusMove() {
                 let top=(t/document.documentElement.clientHeight)*100;
                 vpanlplussleft = left.toString() + "%";
                 vpanlplusstop = top.toString() + "%";
-                vpluswindow.style.left =vpanlplussleft;
-                vpluswindow.style.top =vpanlplusstop;
+                $(vpluswindow).css({"left":vpanlplussleft,"top":vpanlplusstop});
             };
             /*鼠标的抬起事件,终止拖动*/
             window.onmouseup = function () {
@@ -138,9 +142,6 @@ function PanelWindowPlusMove() {
             };
         }
     }
-}
-
-function PanelWindowPlusWheel() {
     vpluswindow.onmousewheel = function (event) {
         if(MouseIn(vpluswindow)&&MouseInCondition()){
             event = event || window.event;
@@ -159,7 +160,36 @@ function PanelWindowPlusWheel() {
         }
     }
 }
-function SetPanelWindowPostion(panelwindow){
+function VplusVideoEvent(){
+    vplusvideo.ontimeupdate=function(){
+        let element=vpluswindow.children[3].children[2].children[0];
+        element.innerText=SecondToTime(vplusvideo.currentTime);
+    }
+    vplusvideo.onplay=function(){
+        let element=vpluswindow.children[3].children[1];
+        element.src="\./images/pause.png"
+    }
+    vplusvideo.onpause=function(){
+        let element=vpluswindow.children[3].children[1];
+        element.src="\./images/play.png"
+    }
+    vpluswindow.children[3].children[1].onmouseup=function(){
+        if(vplusvideo.paused){
+            vplusvideo.play();
+        }else{
+            vplusvideo.pause();
+        }
+    }
+}
+function CleanVpanelVplusEvent(){
+    vplusvideo.ontimeupdate=null;
+    vplusvideo.onplay=null;
+    vplusvideo.onpause=null;
+    vpluswindow.children[3].children[1].onmouseup=null;
+    vpluswindow.onmousedown=null;
+    vpluswindow.onmousewheel =null;
+}
+function WritePanelWindowPostion(panelwindow){
     let w=(panelwindow.parentNode.offsetWidth/document.body.offsetWidth)*100+"%";
     let l=(getElementLeftToBody(panelwindow.parentNode)/document.body.offsetWidth)*100+"%";
     let t=(getElementTopToBody(panelwindow.parentNode)/document.body.offsetHeight)*100+"%";

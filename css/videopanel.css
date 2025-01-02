@@ -91,15 +91,11 @@ panelwindow 只能用 relative 定位
     height:23px;
     left:2%;
     margin-top:5%;
-    opacity:0.88;
-    content:url("../images/favorite_n.png");
+    filter:brightness(100%) saturate(100%);
+    transition-duration:var(--animadur);
 }
 .PanelControllove:hover{
-    content:url("../images/favorite_r.png");
-}
-.PanelControlloveF{
-    opacity:1;
-    content:url("../images/favorite_y.png");
+    filter:brightness(40%) saturate(150%);
 }
 .PanelControlRemind{
     position:absolute;
@@ -107,42 +103,49 @@ panelwindow 只能用 relative 定位
     left:36%;
     height:23px;
     margin-top:24%;
-    background-color: #93bd6f;
+    font-size:15px;
+    color:#409eff;
     pointer-events:none;
 }
 .PanelControllock{
     position:absolute;
-    width:23px;
+    width:30px;
     right:32%;
-    height:23px;
+    height:30px;
     margin-top:5%;
-    opacity:0.88;
-    content:url("../images/locked_0.png");
+    padding:5px;
+    border-radius:30px;
+    filter:brightness(0%) invert(100%) saturate(100%);
+    transition-duration:var(--animadur);
 }
 .PanelControllock:hover{
-    content:url("../images/locked_2.png");
+    background-color:#000;
+    opacity:0.8;
+    filter:brightness(100%) invert(0%) saturate(70%);
 }
 .PanelControlposture{
     position:absolute;
     width:28%;
     right:2%;
-    height:23px;
+    height:30px;
     margin-top:5%;
-    background-color: #93bd6f;
+    background-color:#ff6262;
+    pointer-events: none;
 }
 .PanelControlSpeed{
     position:absolute;
-    width:28%;
-    right:2%;
+    width:36%;
+    left:2%;
     height:23px;
     margin-top:46%;
     background-color: #93bd6f;
 }
 .PanelControlquality{
     position:absolute;
-    width:28%;
-    left:2%;
+    width:18%;
+    right:2%;
     height:23px;
     margin-top:46%;
-    background-color: #93bd6f;
+    background-color:#ff6262;
+    pointer-events: none;
 }

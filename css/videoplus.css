@@ -20,11 +20,11 @@
     transform: translateY(-5%);
     max-width:25px;
     transition-duration:var(--animadur);
-    content:url("../images/vplusmix.png");
+    filter:brightness(0%) invert(100%) saturate(100%);
     cursor: pointer;
 }
 .PanelControlexit:hover{
-    content:url("../images/vplusmix_hover.png");
+    filter:brightness(100%) invert(0%) saturate(100%);
 }
 
 .PanelControlvplay{
@@ -34,7 +34,13 @@
     height:30px;
     margin-top:50%;
     border-radius: 30px;
-    content:url("../images/play.png");
+    padding:6px;
+    transition-duration:var(--animadur);
+}
+.PanelControlvplay:hover{
+    opacity:0.8;
+    background-color:#000;
+    transition-duration:var(--animadur);
 }
 .PanelControlvtime{
     position:absolute;
@@ -42,7 +48,10 @@
     width:16%;
     height:30px;
     margin-top:50%;
-    background-color: #93bd6f;
+    color:white;
+    padding-top:5px;
+    font-size:15px;
+    pointer-events:none;
 }
 .PanelControloption{
     position:absolute;
@@ -73,13 +82,13 @@
     position:absolute;
     width:100%;
     margin-top:22px;
-    content:url("../images/masktop.png");
+
     pointer-events: none;
 }
 .PanelControlmaskb{
     position:absolute;
     width:100%;
     margin-top:53.75%;
-    content:url("../images/maskbottom.png");
+
     pointer-events: none;
 }
